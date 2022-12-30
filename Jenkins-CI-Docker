@@ -28,7 +28,7 @@ pipeline {
       steps{
         script {
          
-         dockerImage = docker.build myimage
+         dockerImage = docker.build siddarth8696/my_repo1:latest
         }
       }
     }
@@ -37,7 +37,7 @@ pipeline {
         script {
           docker.withRegistry( https://registry.hub.docker.com,sid ) {
             dockerImage.push("${env.BUILD_NUMBER}")
-            dockerImage.push("myimage")
+            dockerImage.push("latest")
           }
         }
       }
