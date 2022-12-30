@@ -28,14 +28,14 @@ pipeline {
       steps{
         script {
          
-         dockerImage = docker.build dockerimagename
+         dockerImage = docker.build myimage
         }
       }
     }
     stage('Pushing Image') {
       steps{
         script {
-          docker.withRegistry( registry_url, registryCredential ) {
+          docker.withRegistry( https://registry.hub.docker.com,sid ) {
             dockerImage.push("${env.BUILD_NUMBER}")
             dockerImage.push("latest")
           }
