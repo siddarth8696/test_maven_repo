@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    dockerimagename = "siddarth8696/my_repo1:tomee"
+    dockerimagename = "siddarth8696/my_repo1"
     registry_url = "https://registry.hub.docker.com"
     registryCredential = 'sid'
     }
@@ -28,14 +28,14 @@ pipeline {
       steps{
         script {
          
-         dockerImage = docker.build siddarth8696/my_repo1:tomee2
+         dockerImage = docker.build dockerimagename
         }
       }
     }
     stage('Pushing Image') {
       steps{
         script {
-          docker.withRegistry( https://registry.hub.docker.com,sid ) {
+          docker.withRegistry( https://registry.hub.docker.com,registryCredential ) {
             dockerImage.push("${env.BUILD_NUMBER}")
             dockerImage.push("latest")
           }
