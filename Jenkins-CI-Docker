@@ -28,7 +28,7 @@ pipeline {
       steps{
         script {
          
-         dockerImage = docker.build dockerimage
+         dockerImage = docker.build siddarth8696/my_repo1:v1
         }
       }
     }
